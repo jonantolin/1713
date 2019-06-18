@@ -13,14 +13,14 @@ public class YoutubeTest {
 	
 	Youtube video;
 	
-	private static final int LONGITUD_CODIGO = 11;
+	/* private static final int LONGITUD_CODIGO = 11;
 	private static final int LONGITUD_MIN_TITULO = 2;
 	private static final int LONGITUD_MAX_TITULO = 150;
+	*/
 	private static final String URL = "https://www.youtube.com/watch?v=";
-	
-	private String titulo = "Rammstein";
-	private String codigo = "12345678901"; // exactamente 11
-	private int reproducciones; // >= 0
+	private final String  TITULO = "Rammstein";
+	private final String  CODIGO = "12345678901"; // exactamente 11
+	 // private int reproducciones; // >= 0
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -33,7 +33,7 @@ public class YoutubeTest {
 	@Before
 	public void setUp() throws Exception {
 		
-		video = new Youtube(titulo, codigo);
+		video = new Youtube(TITULO, CODIGO);
 	}
 
 	@After
@@ -43,12 +43,12 @@ public class YoutubeTest {
 	@Ignore
 	@Test
 	public void testYoutube() {
-		fail("Not yet implemented");
+		 // Youtube video2 = new Youtube();  //El constructor aun no está definido
 	}
 
 	@Test
 	public void testGetTitulo() {
-		assertEquals("Rammstein", video.getTitulo());
+		assertEquals(TITULO, video.getTitulo());
 	}
 
 	@Test (expected = Exception.class)
@@ -62,7 +62,7 @@ public class YoutubeTest {
 
 	@Test
 	public void testGetCodigo() {
-		assertEquals(codigo, video.getCodigo());
+		assertEquals(CODIGO, video.getCodigo());
 	}
 
 	@Test (expected = Exception.class)
@@ -94,7 +94,7 @@ public class YoutubeTest {
 	
 	@Test
 	public void testGetURL() {
-		assertEquals(URL+codigo, video.getURL());
+		assertEquals(URL+CODIGO, video.getURL());
 	}
 
 }
