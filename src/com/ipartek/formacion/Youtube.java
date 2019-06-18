@@ -11,7 +11,9 @@ public class Youtube {
 	
 	private String titulo;
 	private String codigo;
-	private int reproducciones;
+	private int reproducciones; // >= 0
+	
+	// HACER TEST Y PRUEBAS JUNIT
 	
 	//constructores
 	
@@ -61,8 +63,12 @@ public class Youtube {
 	public int getReproducciones() {
 		return reproducciones;
 	}
-	public void setReproducciones(int reproducciones) {
+	public void setReproducciones(int reproducciones) throws Exception {
 		this.reproducciones = reproducciones;
+		
+		if(this.reproducciones <= 0) {
+			throw new Exception("Debe tener reproducciones, un numero postivo");
+		}
 	}
 
 	// metodos
@@ -78,3 +84,4 @@ public class Youtube {
 
 
 }
+
