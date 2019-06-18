@@ -50,6 +50,12 @@ public class Youtube {
 	public String getCodigo() {
 		return codigo;
 	}
+	
+	/**
+	 * 
+	 * @param codigo String debe ser de tamaño 11 caracteres
+	 * @throws Exception si el codigo tiene una longitud distinta a 11 o es null
+	 */
 	public void setCodigo(String codigo) throws Exception {
 		
 		if(codigo != null && codigo.length() == LONGITUD_CODIGO) {
@@ -60,9 +66,16 @@ public class Youtube {
 		}
 
 	}
+	
 	public int getReproducciones() {
 		return reproducciones;
 	}
+	
+	/**
+	 * 
+	 * @param int reproducciones numero de reproducciones debe ser mayor de 0
+	 * @throws Exception si reproducciones es <= 0 
+	 */
 	public void setReproducciones(int reproducciones) throws Exception {
 		this.reproducciones = reproducciones;
 		

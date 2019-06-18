@@ -1,9 +1,8 @@
 package com.ipartek.formacion;
 
+import java.io.Serializable;
 
-	
-
-public class Perro {
+public class Perro implements Serializable{
 
 	protected String nombre;
 	protected int edad;
