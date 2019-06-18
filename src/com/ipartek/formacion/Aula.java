@@ -1,57 +1,56 @@
 package com.ipartek.formacion;
 
+import java.util.ArrayList;
+
+import java.util.Iterator;
+
 public class Aula {
+	
+	
+	private ArrayList<Person> listaAlumnos = new ArrayList<Person>();
+	 String[] alumnos = { "Ander",
+			"Mounir",	
+			"Andoni",
+			"Asier",
+			"Jon C",
+			"Arkaitz",
+			"Aritz",
+			"Manuel",
+			"Eduardo",
+			"Eder I",
+			"Eder S",
+			"Gaizka",
+			"Borja",
+			"Verónica",
+			"Jon A",
+			"Jose Luís"};
 
-	public static void main(String[] args) {
-
-		// Declarar array con nombre alumnos
-
-		// Generar numero aleatorio
-
-		// Mostrar voluntario para leer
-
-		String[] alumnos = { "Ander",
-							"Mounir",	
-							"Andoni",
-							"Asier",
-							"Jon C",
-							"Arkaitz",
-							"Aritz",
-							"Manuel",
-							"Eduardo",
-							"Eder I",
-							"Eder S",
-							"Gaizka",
-							"Borja",
-							"Verónica",
-							"Jon A",
-							"Jose Luís"};
-
+	public void rellenarLista() {
+		for (int i = 0; i < alumnos.length; i++) {
+			listaAlumnos.add(new Person(alumnos[i], 20, 'H'));
+		}
+	}
+	
+	public void listado() {
+		
+		Iterator <Person> it = listaAlumnos.iterator();
+		while(it.hasNext()) {
+			System.out.println(it.next().getNombre());
+		}
+		
+	}
+	
+	public String afortunado() {
+		String mensaje;
 		int numAleatorio;
 
-		numAleatorio = (int) (Math.random() * alumnos.length);
-
-		for (int i = 0; i < alumnos.length; i++) {
-			System.out.println(alumnos[i]);
-
-		}
-
-		System.out.println("El alumno escogido es: " + alumnos[numAleatorio]);
+		numAleatorio = (int) (Math.random() * listaAlumnos.size());
+		
+		mensaje = "El alumno escogido es: " + listaAlumnos.get(numAleatorio).getNombre();
+		
+		return mensaje;
 	}
+	
 
-	/* 
-	 * Cambiar el array de alumnos por arraylist de Person
-	 * 
-	 * Otra aplicacion Java:
-	 *  Menu: 1 - Listar Alumnos con Ranking
-	 * 2 - Crear Alumno (Nombre, edad)
-	 * 3 - eliminar Alumno
-	 * 4 - Bucar Voluntario pa leer (No puede salir el anterior si se tira 2 veces)
-	 * 5 - Ranking de las veces que ha salido cada uno
-	 * 
-	 * Encapsulado en pequeñas funciones
-	 * 
-	 * 
-	 * 
-	 * */
+
 }
