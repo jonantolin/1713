@@ -3,6 +3,13 @@ package com.ipartek.formacion;
 
 import java.util.Scanner;
 
+/**
+ * 
+ * @author Jon
+ *
+ * Usa clase Aula 
+ * Un menu con 4 posibilidades (Listar, Crear, Eliminar, Elegir alumno aleatorio que lee) 
+ */
 public class AulaApp {
 
 	public static void main(String[] args) {
@@ -15,8 +22,6 @@ public class AulaApp {
 		String opcion ="0";
 		
 		do{
-			// opcion=6;
-			
 			
 			System.out.println("\nIntroduzca la opción que quiera (introduzca número): "
 					+ "\n1 - Listar alumnos"
@@ -27,7 +32,7 @@ public class AulaApp {
 					+ "\nIntroduzca numero: ");
 				
 				
-				opcion = sc.next();
+			opcion = sc.next();
 				
 			switch(opcion) {
 			
