@@ -1,6 +1,10 @@
 package com.ipartek.formacion;
 
 public class PerroPresa extends Perro {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int ataque;
 	
 	public PerroPresa() {

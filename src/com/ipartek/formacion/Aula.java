@@ -1,6 +1,7 @@
 package com.ipartek.formacion;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 
@@ -10,7 +11,7 @@ import java.util.Iterator;
  * @author Jon
  *
  */
-public class Aula {
+public class Aula{
 	
 	private int alumSeleccionado = 0;
 	private ArrayList<Alumno> listaAlumnos = new ArrayList<Alumno>();
@@ -45,6 +46,7 @@ public class Aula {
 	
 	public void listado() {
 		
+		ordenarLista();
 		Iterator <Alumno> it = listaAlumnos.iterator();
 		
 	
@@ -66,6 +68,7 @@ public class Aula {
 		// comparator, hay que crear uno, usarlo luego epecificando con sort(elemento, new MiComparator)
 		// Collections.sort();
 		
+		Collections.sort(listaAlumnos);
 
 		
 	} 
@@ -118,6 +121,7 @@ public class Aula {
 		
 		return mensaje;
 	}
+
 
 
 }

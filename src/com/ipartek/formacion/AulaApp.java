@@ -38,7 +38,7 @@ public class AulaApp {
 			
 				case "1":
 					aula.listado();
-					//aula.ordenarLista();
+					
 					break;
 					
 				case "2": 

@@ -1,6 +1,6 @@
 package com.ipartek.formacion;
 
-public class Alumno extends Person{
+public class Alumno extends Person implements Comparable<Alumno>{
 
 	private int numVecesElegido;
 	
@@ -17,6 +17,13 @@ public class Alumno extends Person{
 
 	public void setNumVecesElegido(int numVecesElegido) {
 		this.numVecesElegido = numVecesElegido;
+	}
+
+
+	@Override
+	public int compareTo(Alumno o) {
+		
+		return o.getNumVecesElegido() - this.getNumVecesElegido();
 	}
 	
 	

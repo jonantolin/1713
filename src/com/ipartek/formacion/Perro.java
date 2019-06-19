@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class Perro implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String nombre;
 	protected int edad;
 	protected String raza;
