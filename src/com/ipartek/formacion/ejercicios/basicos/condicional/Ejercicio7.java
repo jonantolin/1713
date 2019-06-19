@@ -22,7 +22,7 @@ public class Ejercicio7 {
 		}else {
 			System.out.println("La división es "+(num1/num2));
 		}
-		
+		sc.close();
 
 	}
 

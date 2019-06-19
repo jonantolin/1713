@@ -18,7 +18,7 @@ public class Ejercicio2 {
 		}else {
 			System.out.println("No es un múltiplo de 10.");
 		}
-
+		sc.close();
 	}
 
 }

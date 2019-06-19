@@ -22,6 +22,7 @@ public class Ejercicio4 {
 		}else {
 			System.out.println("Los caracteres "+a+" y "+b+" no son iguales");
 		}
+		sc.close();
 	}
 
 }

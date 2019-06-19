@@ -14,6 +14,7 @@ public class VariablesPrimitivasWrapper {
 		// declarar todas los posibles tipos primitivos
 		
 		// números enteros
+		/*
 		byte b = 2;
 		short s = 4;
 		int i = 0;
@@ -25,14 +26,18 @@ public class VariablesPrimitivasWrapper {
 		float f = 2.34f;
 		double lo = 4.56;
 		
+		
 		// otros
 		
 		char c = 'a'; // Se usan comillas simples
 		boolean b1 = true; // or false
 		
+		*/
 		// Clases Wrapper 
 		
 		int numeroParseado = Integer.parseInt("3"); //Devuelve un String como entero 
+		
+		System.out.println(numeroParseado);
 		
 		System.out.printf("El rango de un int %d %d \n\n\n", Integer.MIN_VALUE, Integer.MAX_VALUE);
 		

@@ -13,8 +13,8 @@ import java.util.Iterator;
 public class Aula {
 	
 	private int alumSeleccionado = 0;
-	private ArrayList<Person> listaAlumnos = new ArrayList<Person>();
-	private ArrayList<Integer> vecesElegido = new ArrayList<Integer>();
+	private ArrayList<Alumno> listaAlumnos = new ArrayList<Alumno>();
+	
 	 String[] alumnos = { "Ander",
 			"Mounir",	
 			"Andoni",
@@ -39,35 +39,39 @@ public class Aula {
 	 */
 	public void rellenarLista() {
 		for (int i = 0; i < alumnos.length; i++) {
-			listaAlumnos.add(new Person(alumnos[i], 20, 'H'));
-			vecesElegido.add(0);
+			listaAlumnos.add(new Alumno(alumnos[i]));
 		}
 	}
 	
 	public void listado() {
 		
-		Iterator <Person> it = listaAlumnos.iterator();
-		Iterator <Integer> it2 = vecesElegido.iterator();
+		Iterator <Alumno> it = listaAlumnos.iterator();
+		
 	
-		while(it.hasNext() && it2.hasNext()) {
+		while(it.hasNext()) {
 			
-			Person person = (Person) it.next();
-			Integer num = (Integer) it2.next();
-			System.out.println(person.getNombre()+" --------Elegido: "+ num+" veces");
+			Alumno alum = (Alumno) it.next();
+	
+			System.out.println(alum.getNombre()+" --------Elegido: "+ alum.getNumVecesElegido()+" veces");
 
 		}
 		
 	}
 	
+	public void ordenarLista() {
+		
+		//TODO implementar Collection.sort , probar interface comparable y comparator
+		// comparable sobreescribe el comparator, luego sort();
+		
+		// comparator, hay que crear uno, usarlo luego epecificando con sort(elemento, new MiComparator)
+		// Collections.sort();
+		
+
+		
+	} 
 	
 	public void nuevoAlumno(String nombre) {
-		listaAlumnos.add(new Person(nombre, 20, 'H'));
-		vecesElegido.add(0);
-	}
-	
-	public void nuevoAlumno(String nombre, int edad, char sexo) {
-		listaAlumnos.add(new Person(nombre, edad, sexo));
-		vecesElegido.add(0);
+		listaAlumnos.add(new Alumno(nombre));
 	}
 	
 	/**
@@ -76,12 +80,12 @@ public class Aula {
 	 */
 	public void eliminarAlumno(String nombre) {
 		
-		for (Iterator<Person> iterator = listaAlumnos.iterator(); iterator.hasNext();) {
+		for (Iterator<Alumno> iterator = listaAlumnos.iterator(); iterator.hasNext();) {
 			
-			Person person = (Person) iterator.next();
+			Alumno alum = (Alumno) iterator.next();
 			
-			if(person.getNombre().equals(nombre)) {
-				System.out.println(person.getNombre()+" ha sido eliminado de la lista");
+			if(alum.getNombre().equals(nombre)) {
+				System.out.println(alum.getNombre()+" ha sido eliminado de la lista");
 				iterator.remove();
 			}
 			
@@ -106,7 +110,9 @@ public class Aula {
 		}while(numAleatorio == alumSeleccionado);
 		
 		alumSeleccionado = numAleatorio;
-		vecesElegido.set(alumSeleccionado, vecesElegido.get(alumSeleccionado)+1);
+		
+		
+		listaAlumnos.get(alumSeleccionado).setNumVecesElegido(listaAlumnos.get(alumSeleccionado).getNumVecesElegido() +1);
 		
 		mensaje = "El alumno escogido es: " + listaAlumnos.get(alumSeleccionado).getNombre();
 		

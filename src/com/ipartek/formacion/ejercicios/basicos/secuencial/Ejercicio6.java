@@ -15,6 +15,8 @@ public class Ejercicio6 {
 		double velocidadMS = velocidad * 1000 / 3600;
 		
 		System.out.println("La velocidad en M/S es "+velocidadMS);
+		
+		sc.close();
 	}
 
 }

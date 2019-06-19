@@ -52,7 +52,7 @@ public class Ejercicio10 {
 		default: System.out.println("No has elegido un mes correcto (num del 1 al 12)");
 		
 		}
-
+		sc.close();
 	}
 
 }

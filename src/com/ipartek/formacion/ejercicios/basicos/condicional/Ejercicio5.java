@@ -26,6 +26,7 @@ public class Ejercicio5 {
 		}else {
 			System.out.println(caracter2+" No es una letra minúscula");
 		}
+		sc.close();
 	}
 
 }

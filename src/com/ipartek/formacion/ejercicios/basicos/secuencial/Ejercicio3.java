@@ -15,7 +15,7 @@ public class Ejercicio3 {
 		System.out.println("Ha introducido "+numero+" \nEl dobre es: "+(numero*2)+
 				"\nEl triple es: "+(numero*3));
 		
-		
+		sc.close();
 	}
 
 }

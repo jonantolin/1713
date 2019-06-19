@@ -27,7 +27,8 @@ public class Ejercicio8 {
 		}else {
 			System.out.println(num3+ " Es el mayor número de los 3");
 		}
-
+		
+		sc.close();
 	}
 
 }

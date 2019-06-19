@@ -17,7 +17,8 @@ public class Ejercicio4 {
 		float gradosFarenheit = 32 + ( 9 * grados / 5);
 		
 		System.out.println("Los "+grados+" grados centígrados son "+gradosFarenheit+" grados Farenheit.");
-
+		
+		sc.close();
 	}
 
 }

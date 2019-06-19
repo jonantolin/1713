@@ -28,6 +28,7 @@ public class Ejercicio5 {
 		
 		System.out.printf("Valor de la longitud: %.2f \nValor del área: %.2f", longitud, area);
 		
+		sc.close();
 	}
 
 }

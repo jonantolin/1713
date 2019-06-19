@@ -19,7 +19,7 @@ public class Ejercicio1 {
 			System.out.println("El número es impar");
 		}
 		
-		
+		sc.close();
 	}
 
 }

@@ -19,7 +19,7 @@ public class Ejercicio3 {
 			System.out.println("No es una letra mayúscula");
 		}
 		
-		
+		sc.close();
 	}
 
 }

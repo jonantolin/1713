@@ -50,7 +50,7 @@ public class Ejercicio7 {
 		/*for (numero2; numero2 >= 1; numero2--) {
 			System.out.print(" " + numero2);
 		}*/
-
+		sc.close();
 	}
 
 }

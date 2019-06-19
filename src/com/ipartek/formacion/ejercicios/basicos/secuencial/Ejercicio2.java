@@ -12,6 +12,8 @@ public class Ejercicio2 {
 		nombre = teclado.next();
 		
 		System.out.println("Buenos días "+nombre);
+		
+		teclado.close();
 	}
 
 }

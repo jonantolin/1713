@@ -16,7 +16,8 @@ public class Ejercicio1 {
 		num2 = teclado.nextInt();
 		
 		System.out.println("Has introducido "+num1+" y "+num2);
-
+		
+		teclado.close();
 	}
 
 }

@@ -18,7 +18,8 @@ public class Ejercicio6 {
 		}else {
 			System.out.println("No es un número");
 		}
-
+		
+		sc.close();
 	}
 
 }
