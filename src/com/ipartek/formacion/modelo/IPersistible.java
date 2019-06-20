@@ -19,6 +19,9 @@ public interface IPersistible<P> {
 	
 	boolean delete(int id);
 	
+	//boolean delete(String nombre);
+	
 	boolean update(P pojo);
-
+	
+	
 }

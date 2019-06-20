@@ -18,7 +18,7 @@ public class AulaApp {
 
 		Scanner sc = new Scanner(System.in);
 		
-		Aula aula = new Aula();
+		AulaSinDAO aula = new AulaSinDAO();
 		aula.rellenarLista();
 		
 		String opcion ="0";

@@ -7,6 +7,7 @@ import java.util.List;
 import com.ipartek.formacion.Alumno;
 
 //No implemento IPersistible<P> sino directamente <Alumno> porque se que es para Alumnos
+// A esto se le llama "interferir" -> pj: Se le interfiere con Alumno
 public class DAOAlumnoArrayList implements IPersistible<Alumno> {
 
 	private ArrayList<Alumno> lista;
@@ -14,6 +15,11 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
 	public DAOAlumnoArrayList() {
 		super();
 		this.lista = new ArrayList<Alumno>();
+	}
+	
+	public DAOAlumnoArrayList(ArrayList<Alumno> lista) {
+		super();
+		this.lista = lista;
 	}
 
 	@Override
@@ -44,20 +50,21 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
 		return true;
 	}
 
-	@Override
-	public boolean delete(int id) {
+
+	public boolean delete(String nombre) {
 
 		boolean borrado = false;
-
-		Iterator<Alumno> it = lista.iterator();
-
-		while (it.hasNext()) {
-			Alumno a = it.next();
-			if (a.getId() == id) {
-				it.remove();
+		
+		for (Iterator<Alumno> iterator = lista.iterator(); iterator.hasNext();) {
+			
+			Alumno alum = (Alumno) iterator.next();
+			
+			if(alum.getNombre().equals(nombre)) {
+				
+				iterator.remove();
 				borrado = true;
 			}
-
+			
 		}
 
 		return borrado;
@@ -71,6 +78,29 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
 
 		// System.out.println("Añadido");
 		return true;
+	}
+	
+	public boolean update(String nombreViejo, String nombreNuevo) {
+		
+		for (Iterator<Alumno> iterator = lista.iterator(); iterator.hasNext();) {
+			
+			Alumno alum = (Alumno) iterator.next();
+			
+			if(alum.getNombre().equals(nombreViejo)) {
+				
+				//iterator.remove();
+				alum.setNombre(nombreNuevo);
+			}
+			
+		}
+		
+		return true;
+	}
+
+	@Override
+	public boolean delete(int id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
