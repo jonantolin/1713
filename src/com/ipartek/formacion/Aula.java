@@ -132,7 +132,7 @@ public class Aula {
 						+ "\n4 - Buscar Alumno Afortunado para leer"
 						+ "\n5 - Modificar alumno" 
 						+ "\n6 - Guardar lista" 
-						+ "\n7 - Cargar lista guardada" 
+						+ "\n7 - Ver última lista guardada" 
 						+ "\n0- Salir" 
 						+ "\nIntroduzca numero: ");
 	}
