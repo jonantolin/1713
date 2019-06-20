@@ -1,5 +1,13 @@
 package com.ipartek.formacion.modelo;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -11,6 +19,10 @@ import com.ipartek.formacion.Alumno;
 public class DAOAlumnoArrayList implements IPersistible<Alumno> {
 
 	private ArrayList<Alumno> lista;
+    private String mensaje;
+    
+    private FileReader lector;
+    
 
 	public DAOAlumnoArrayList() {
 		super();
@@ -96,7 +108,57 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
 		
 		return true;
 	}
+    public void guardar_mensaje(ArrayList<Alumno> lista) throws IOException{
+    		
+        try{
+        	String linea="";
+        	File almacen= new File("C:\\Users\\Jon\\Desktop\\RankingAlumnos.txt");
+           // almacen = new FileWriter("C:\\Users\\Jon\\Desktop\\RankingAlumnos.txt");
+        	FileOutputStream fos = new FileOutputStream(almacen);
+            BufferedWriter buffer = new BufferedWriter(new OutputStreamWriter(fos));
+            int cont=0;
+            for (Iterator<Alumno> iterator = lista.iterator(); iterator.hasNext();) {
+            	
+				Alumno alumno = (Alumno) iterator.next();
+				cont++;	
+				if(alumno != null) {
+		            linea = cont+"º - "+alumno.getNombre() + " -------- Elegido: " + alumno.getNumVecesElegido() + " veces";
+		            buffer.write(linea);
+		            buffer.newLine();
+		            
+		            //TODO revisar ultimo registro que no sea nulo como pasa
+				}
+   
+            } 
+            buffer.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        
 
+    }
+    
+    public void LeerMensaje(){
+        try{
+            lector = new FileReader("C://Users/Jon/Desktop/RankingAlumnos.txt");
+            BufferedReader buffer = new BufferedReader(lector);
+            boolean eol = false;
+            while(!eol) {
+            String linea = buffer.readLine();
+            
+	            if(linea == null) {
+	            	eol = true;
+	            }else {
+	            	System.out.println(linea);
+	            }
+            }
+            
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        System.out.println("El mensaje es: "+mensaje);
+    
+    }
 	@Override
 	public boolean delete(int id) {
 		// TODO Auto-generated method stub

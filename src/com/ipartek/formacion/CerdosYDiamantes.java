@@ -29,24 +29,7 @@ public class CerdosYDiamantes  {
 		lista.add(c3);
 		lista.add(d3);
 		
-		
-		
-		for(Ordenable elemento: lista) {
-			
-			
-			
-			if(elemento instanceof Cerdo) {
-				Cerdo c1 = (Cerdo) elemento;
-				c1.getNombre();
-				
-			}
-			if(elemento instanceof Diamante) {
-				Diamante d1 = (Diamante) elemento;	
-				d1.getColor();	
-			}	
-			
-		} 
-		
+
 		Collections.sort(lista, new ComparadorCerdosDiamantes());
 		
 		assertEquals(1, lista.get(0).getValor());

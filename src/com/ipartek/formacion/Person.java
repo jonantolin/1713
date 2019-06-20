@@ -5,13 +5,7 @@ public class Person{
 	// atributos
 	private int id; // Lo usare para una BBDD, primary key
 	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 
 	private String nombre;
 	private int edad;
@@ -27,6 +21,8 @@ public class Person{
 	 *   Queremos sobrecargar el constructor para poder crear una persona
 	 *    induicabdo el nombre, la edad y el sexo
 	 * */
+	
+	
 	
 	public Person() {
 		this.id = -1; //Esto indicara despues que no se ha recuperado de la base de datos
@@ -44,6 +40,14 @@ public class Person{
 		this.nombre = nombre;
 		this.edad = edad;
 		this.sexo = sexo;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public void setNombre(String nombre) {

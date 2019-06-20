@@ -10,6 +10,13 @@ public class Alumno extends Person implements Comparable<Alumno>{
 		setNumVecesElegido(0);
 	}
 	
+	public Alumno(int id, String nombre) {
+		super();
+		setId(id);
+		setNombre(nombre);
+		setNumVecesElegido(0);
+	}
+	
 	
 	public int getNumVecesElegido() {
 		return numVecesElegido;
