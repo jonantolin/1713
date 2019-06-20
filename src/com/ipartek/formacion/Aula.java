@@ -62,15 +62,8 @@ public class Aula{
 	
 	public void ordenarLista() {
 		
-		//TODO implementar Collection.sort , probar interface comparable y comparator
-		// comparable sobreescribe el comparator, luego sort();
-		
-		// comparator, hay que crear uno, usarlo luego epecificando con sort(elemento, new MiComparator)
-		// Collections.sort();
-		
 		Collections.sort(listaAlumnos);
 
-		
 	} 
 	
 	public void nuevoAlumno(String nombre) {

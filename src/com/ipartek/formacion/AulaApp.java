@@ -9,6 +9,8 @@ import java.util.Scanner;
  *
  * Usa clase Aula 
  * Un menu con 4 posibilidades (Listar, Crear, Eliminar, Elegir alumno aleatorio que lee) 
+ * 
+ *  TODO cambiar numero magico de opcion en el switch por constantes
  */
 public class AulaApp {
 

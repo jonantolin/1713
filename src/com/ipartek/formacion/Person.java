@@ -1,8 +1,18 @@
 package com.ipartek.formacion;
 
-public class Person implements IAmigable{
+public class Person{
 
 	// atributos
+	private int id; // Lo usare para una BBDD, primary key
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	private String nombre;
 	private int edad;
 	private float altura; // 1.70 m
@@ -19,6 +29,7 @@ public class Person implements IAmigable{
 	 * */
 	
 	public Person() {
+		this.id = -1; //Esto indicara despues que no se ha recuperado de la base de datos
 		this.nombre = "Anónimo";
 		this.edad = 18;
 		this.altura = 0;
@@ -94,10 +105,12 @@ public class Person implements IAmigable{
 		this.sexo = sexo;
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "Person [nombre=" + nombre + ", edad=" + edad + ", altura=" + altura + ", peso=" + peso + ", colorOjos="
-				+ colorOjos + ", sexo=" + sexo + "]";
+		return "Person [id=" + id + ", nombre=" + nombre + ", edad=" + edad + ", altura=" + altura + ", peso=" + peso
+				+ ", colorOjos=" + colorOjos + ", sexo=" + sexo + "]";
 	}
 
 	public String saludar() {
@@ -106,11 +119,6 @@ public class Person implements IAmigable{
 		return "Hola, me llamo "+nombre;
 	}
 
-	@Override
-	public String despedir() {
-		
-		return "Agur Ben-Hur";
-	}
 	
 
 }
