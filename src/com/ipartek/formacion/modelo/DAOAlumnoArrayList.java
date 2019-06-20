@@ -36,13 +36,11 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
 
 	@Override
 	public List<Alumno> getAll() {
-		// TODO Auto-generated method stub
 		return lista;
 	}
 
 	@Override
 	public Alumno getById(int id) {
-		// TODO Auto-generated method stub
 		Alumno resul = null;
 
 		for (Alumno a : lista) {
@@ -111,12 +109,13 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
     public void guardar_mensaje(ArrayList<Alumno> lista) throws IOException{
     		
         try{
+        	
         	String linea="";
         	File almacen= new File("C:\\Users\\Jon\\Desktop\\RankingAlumnos.txt");
-           // almacen = new FileWriter("C:\\Users\\Jon\\Desktop\\RankingAlumnos.txt");
         	FileOutputStream fos = new FileOutputStream(almacen);
             BufferedWriter buffer = new BufferedWriter(new OutputStreamWriter(fos));
             int cont=0;
+            
             for (Iterator<Alumno> iterator = lista.iterator(); iterator.hasNext();) {
             	
 				Alumno alumno = (Alumno) iterator.next();
@@ -130,7 +129,9 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
 				}
    
             } 
+            
             buffer.close();
+            
         }catch(IOException ex){
             ex.printStackTrace();
         }
@@ -139,10 +140,13 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
     }
     
     public void LeerMensaje(){
+    	
         try{
+        	
             lector = new FileReader("C://Users/Jon/Desktop/RankingAlumnos.txt");
             BufferedReader buffer = new BufferedReader(lector);
             boolean eol = false;
+            
             while(!eol) {
             String linea = buffer.readLine();
             
@@ -161,7 +165,7 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
     }
 	@Override
 	public boolean delete(int id) {
-		// TODO Auto-generated method stub
+		// TODO implementar borrar por id
 		return false;
 	}
 
