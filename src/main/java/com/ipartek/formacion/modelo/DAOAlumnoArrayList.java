@@ -17,14 +17,32 @@ import com.ipartek.formacion.Alumno;
 //No implemento IPersistible<P> sino directamente <Alumno> porque se que es para Alumnos
 // A esto se le llama "interferir" -> pj: Se le interfiere con Alumno
 public class DAOAlumnoArrayList implements IPersistible<Alumno> {
-
+	
+	private static DAOAlumnoArrayList INSTANCE;
 	private ArrayList<Alumno> lista;
-    private String mensaje;
+   
     
     private FileReader lector;
     
-
-	public DAOAlumnoArrayList() {
+    /**
+     * Encargado de devolver solo un objeto, patron Singleton
+     * La palabra reservada synchronized hace que si se le llama al mismo tiempo, cree uno y al terminar, 
+     * cree el otro y así sucesivamente
+     * @return
+     */  
+    public static synchronized DAOAlumnoArrayList getInstance(){
+    	
+    	if(INSTANCE == null) {
+    		INSTANCE = new DAOAlumnoArrayList();
+    	}
+    	return INSTANCE;
+    }
+    
+    
+    /**
+     * Privado para que nadie pueda crear objetos
+     */
+	private DAOAlumnoArrayList() {
 		super();
 		this.lista = new ArrayList<Alumno>();
 	}
@@ -120,12 +138,15 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
             	
 				Alumno alumno = (Alumno) iterator.next();
 				cont++;	
-				if(alumno != null) {
-		            linea = cont+"º - "+alumno.getNombre() + " -------- Elegido: " + alumno.getNumVecesElegido() + " veces";
-		            buffer.write(linea);
-		            buffer.newLine();
+				boolean terminado = false;
+				if(alumno == null && !terminado) {
+		            terminado = true;
 		            
 		            //TODO revisar ultimo registro que no sea nulo como pasa
+				}else {
+					linea = cont+"º - "+alumno.getNombre() + " -------- Elegido: " + alumno.getNumVecesElegido() + " veces";
+		            buffer.write(linea);
+		            buffer.newLine();
 				}
    
             } 
@@ -157,10 +178,9 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
 	            }
             }
             
-        }catch(Exception ex){
+        }catch(IOException ex){
             ex.printStackTrace();
         }
-        System.out.println("El mensaje es: "+mensaje);
     
     }
 	@Override
