@@ -8,6 +8,16 @@ import java.util.Scanner;
 
 import com.ipartek.formacion.modelo.DAOAlumnoArrayList;
 
+
+/**
+ * Aplicación para elegir un alumno aleatorio para que lea,
+ * Permite ver un ranking con las veces que ha sido seleccionado cada alumno
+ * Permite crear, eliminar, actualizar alumnos (CRUD)
+ * Tambien se puede guardar en un fichero de texto el ranking y visualizarlo
+ * 
+ * @author Jon
+ *
+ */
 public class Aula {
 
 	private static Scanner sc = new Scanner(System.in);
@@ -133,7 +143,7 @@ public class Aula {
 						+ "\n5 - Modificar alumno" 
 						+ "\n6 - Guardar lista" 
 						+ "\n7 - Ver última lista guardada" 
-						+ "\n0- Salir" 
+						+ "\n0 - Salir" 
 						+ "\nIntroduzca numero: ");
 	}
 
