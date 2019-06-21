@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import com.ipartek.formacion.modelo.DAOAlumnoArrayList;
+import com.ipartek.formacion.modelo.DAOAlumnoFile;
 
 
 /**
@@ -24,7 +24,7 @@ public class Aula {
 
 	private int alumSeleccionado = 0;
 	private static ArrayList<Alumno> listaAlumnos = new ArrayList<Alumno>();
-	private static DAOAlumnoArrayList dao = new DAOAlumnoArrayList(listaAlumnos);
+	private static DAOAlumnoFile dao = new DAOAlumnoFile(listaAlumnos);
 
 	static String[] alumnos = { "Ander", "Mounir", "Andoni", "Asier", "Jon C", "Arkaitz", "Aritz", "Manuel", "Eduardo",
 			"Eder I", "Eder S", "Gaizka", "Borja", "Verónica", "Jon A", "Jose Luís" };
@@ -43,19 +43,23 @@ public class Aula {
 	}
 
 	private static void listado() {
-
+		cargarListaGuardada();
 		Collections.sort(dao.getAll());
 
 		Iterator<Alumno> it = dao.getAll().iterator();
 
 		int cont = 0;
+		
+		System.out.println("Ranking de alumnos elegidos: ");
+		System.out.println("-----------------------------------------------------");
+		System.out.println("Pos | Nombre | Veces Elegido");
 		while (it.hasNext()) {
 			
 			
 			Alumno alum = (Alumno) it.next();
 			cont++;
 			System.out.println(
-					cont + "º - " + alum.getNombre() + " -------- Elegido: " + alum.getNumVecesElegido() + " veces");
+					cont + "º" +" | "+ alum.getNombre() + " | " + alum.getNumVecesElegido());
 
 		}
 
@@ -68,6 +72,7 @@ public class Aula {
 		System.out.println("\nIntroduzca nombre del nuevo alumno: ");
 		nombre = (String) sc.nextLine();
 		dao.insert(new Alumno(nombre));
+		guardarListado();
 		System.out.println("Añadido con éxito");
 	}
 
@@ -83,7 +88,8 @@ public class Aula {
 		sc = new Scanner(System.in);
 		String nombre = (String) sc.nextLine();
 		if (dao.delete(nombre)) {
-			System.out.println("Eliminado con éxito");
+			guardarListado();
+			System.out.println("Eliminado con éxito");	
 		} else {
 			System.out.println("No se pudo eliminar, no existía registro");
 		}
@@ -109,6 +115,8 @@ public class Aula {
 
 		dao.getAll().get(alumSeleccionado)
 				.setNumVecesElegido(dao.getAll().get(alumSeleccionado).getNumVecesElegido() + 1);
+		
+		guardarListado();
 
 		mensaje = "El alumno escogido es: " + dao.getAll().get(alumSeleccionado).getNombre();
 
@@ -126,6 +134,7 @@ public class Aula {
 		nombreNuevo = sc.nextLine();
 
 		if (dao.update(nombreAnterior, nombreNuevo)) {
+			guardarListado();
 			System.out.println(nombreAnterior + "Cambiado con éxito por " + nombreNuevo);
 		} else {
 			System.out.println("Error al cambiar, no existia registro.");
@@ -134,28 +143,29 @@ public class Aula {
 	}
 
 	private static void pintarMenu() {
-
+		
+		//TODO implementar reinicar listado
+		
 		System.out.println("\nIntroduzca la opción que quiera (introduzca número): "
 						+ "\n1 - Listar alumnos"
 						+ "\n2 - Crear alumno" 
 						+ "\n3 - Eliminar alumno" 
 						+ "\n4 - Buscar Alumno Afortunado para leer"
 						+ "\n5 - Modificar alumno" 
-						+ "\n6 - Guardar lista" 
-						+ "\n7 - Ver última lista guardada" 
+						//+ "\n6 - Reiniciar Ranking" 
 						+ "\n0 - Salir" 
 						+ "\nIntroduzca numero: ");
 	}
 
-	private static void cargar_lista_guardada() {
-		dao.LeerMensaje();
+	private static void cargarListaGuardada() {
+		listaAlumnos = dao.LeerListaGuardada();
 
 	}
 
-	private static void guardar_mensaje() {
+	private static void guardarListado() {
 
 		try {
-			dao.guardar_mensaje(listaAlumnos);
+			dao.guardarLista(listaAlumnos);
 			System.out.println("Guardado con éxito.");
 		} catch (IOException e) {
 			System.out.println("Error");
@@ -168,7 +178,7 @@ public class Aula {
 
 		Aula aula = new Aula();
 		rellenarLista();
-		// DAOAlumnoArrayList dao = new DAOAlumnoArrayList();
+		
 
 		String opcion = "0";
 
@@ -203,16 +213,6 @@ public class Aula {
 			case "5":
 
 				actualizarAlumno();
-				break;
-
-			case "6":
-
-				guardar_mensaje();
-				break;
-
-			case "7":
-
-				cargar_lista_guardada();
 				break;
 
 			case "0":

@@ -1,6 +1,15 @@
 package com.ipartek.formacion;
 
-public class Person{
+import java.io.Serializable;
+
+public class Person implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 
 	// atributos
 	private int id; // Lo usare para una BBDD, primary key
@@ -12,7 +21,7 @@ public class Person{
 	private float altura; // 1.70 m
 	private float peso;
 	private String colorOjos;
-	private char sexo; // 'H' ó 'M' ó 'I'
+	private char sexo; // 'H' ï¿½ 'M' ï¿½ 'I'
 	
 	/*
 	 *  Creamos un constructor donde la persona por defecto va a tener nombre "anonimo",
@@ -26,7 +35,7 @@ public class Person{
 	
 	public Person() {
 		this.id = -1; //Esto indicara despues que no se ha recuperado de la base de datos
-		this.nombre = "Anónimo";
+		this.nombre = "Anï¿½nimo";
 		this.edad = 18;
 		this.altura = 0;
 		this.peso = 0;

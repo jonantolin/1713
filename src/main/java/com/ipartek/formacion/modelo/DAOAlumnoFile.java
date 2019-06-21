@@ -1,3 +1,4 @@
+
 package com.ipartek.formacion.modelo;
 
 import java.io.File;
@@ -13,15 +14,21 @@ import java.util.List;
 
 import com.ipartek.formacion.Alumno;
 
-//No implemento IPersistible<P> sino directamente <Alumno> porque se que es para Alumnos
-// A esto se le llama "interferir" -> pj: Se le interfiere con Alumno
-public class DAOAlumnoArrayList implements IPersistible<Alumno>, Serializable {
+public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
+
+	// No implemento IPersistible<P> sino directamente <Alumno> porque se que es
+	// para Alumnos
+	// A esto se le llama "interferir" -> pj: Se le interfiere con Alumno
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static DAOAlumnoArrayList INSTANCE;
+	/**
+	 * 
+	 */
+
+	private static DAOAlumnoFile INSTANCE;
 	private ArrayList<Alumno> lista;
 
 	/**
@@ -31,10 +38,10 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno>, Serializable {
 	 * 
 	 * @return
 	 */
-	public static synchronized DAOAlumnoArrayList getInstance() {
+	public static synchronized DAOAlumnoFile getInstance() {
 
 		if (INSTANCE == null) {
-			INSTANCE = new DAOAlumnoArrayList();
+			INSTANCE = new DAOAlumnoFile();
 		}
 		return INSTANCE;
 	}
@@ -42,12 +49,12 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno>, Serializable {
 	/**
 	 * Privado para que nadie pueda crear objetos
 	 */
-	private DAOAlumnoArrayList() {
+	private DAOAlumnoFile() {
 		super();
 		this.lista = new ArrayList<Alumno>();
 	}
 
-	public DAOAlumnoArrayList(ArrayList<Alumno> lista) {
+	public DAOAlumnoFile(ArrayList<Alumno> lista) {
 		super();
 		this.lista = lista;
 	}
@@ -73,8 +80,6 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno>, Serializable {
 	@Override
 	public boolean insert(Alumno pojo) {
 		lista.add(pojo);
-
-		// System.out.println("Añadido");
 		return true;
 	}
 
@@ -100,10 +105,6 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno>, Serializable {
 	@Override
 	public boolean update(Alumno pojo) {
 
-		// TODO encontrar en la lista por pojo.getId, al encontrarlo setNombre
-		// O con setNombr
-
-		// System.out.println("Añadido");
 		return true;
 	}
 
@@ -124,12 +125,12 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno>, Serializable {
 		return true;
 	}
 
-	// Guardo en un fichero la el objeto lista con Serialize
-	public void guardarMensaje(ArrayList<Alumno> lista) throws IOException {
+
+	public void guardarLista(ArrayList<Alumno> lista) throws IOException {
 
 		try {
 
-			// String linea="";
+		
 			File almacen = new File("C:\\1713\\eclipse-workspace\\RankingAlumnos.txt");
 			FileOutputStream fos = new FileOutputStream(almacen);
 
@@ -144,12 +145,7 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno>, Serializable {
 
 	}
 
-	public void LeerMensaje() {
-
-		/*
-		 * TODO Hacer que pueda usar los datos guardados, con Serialize o guardando los
-		 * datos por comas (pj: Jon; 2 )
-		 */
+	public ArrayList<Alumno> LeerListaGuardada() {
 
 		try {
 			FileInputStream lector;
@@ -159,28 +155,18 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno>, Serializable {
 			ObjectInputStream ois = new ObjectInputStream(lector);
 
 			Object aux = ois.readObject();
-			
-			lista = (ArrayList <Alumno>)aux;
-			
+
+			lista = (ArrayList<Alumno>) aux;
+
 			ois.close();
-//            boolean eol = false;
-//            
-//            while(!eol) {
-//            String linea = buffer.readLine();
-//            
-//	            if(linea == null) {
-//	            	buffer.close();
-//	            	eol = true;
-//	            }else {
-//	            	System.out.println(linea);
-//	            }
-//            }
+
 
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return lista;
 
 	}
 
