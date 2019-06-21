@@ -3,10 +3,10 @@ package com.ipartek.formacion.modelo;
 import java.util.List;
 
 /**
- * Operaciones b·sicas de CRUD
+ * Operaciones b√°sicas de CRUD
  * @author Curso
  *
- * P (o cualquier mayuscula) es una clase genÈrica,
+ * P (o cualquier mayuscula) es una clase gen√©rica,
  * para que se pueda implementar la interfaz en cualquier objeto
  */
 public interface IPersistible<P> {

@@ -56,7 +56,7 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
 	public boolean insert(Alumno pojo) {
 		lista.add(pojo);
 
-		// System.out.println("Añadido");
+		// System.out.println("AÃ±adido");
 		return true;
 	}
 
@@ -86,7 +86,7 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
 		// TODO encontrar en la lista por pojo.getId, al encontrarlo setNombre
 		// O con setNombr
 
-		// System.out.println("Añadido");
+		// System.out.println("AÃ±adido");
 		return true;
 	}
 	
@@ -111,7 +111,7 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
         try{
         	
         	String linea="";
-        	File almacen= new File("C:\\Users\\Jon\\Desktop\\RankingAlumnos.txt");
+        	File almacen= new File("C:\\1713\\eclipse-workspace\\RankingAlumnos.txt");
         	FileOutputStream fos = new FileOutputStream(almacen);
             BufferedWriter buffer = new BufferedWriter(new OutputStreamWriter(fos));
             int cont=0;
@@ -121,7 +121,7 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
 				Alumno alumno = (Alumno) iterator.next();
 				cont++;	
 				if(alumno != null) {
-		            linea = cont+"º - "+alumno.getNombre() + " -------- Elegido: " + alumno.getNumVecesElegido() + " veces";
+		            linea = cont+"Âº - "+alumno.getNombre() + " -------- Elegido: " + alumno.getNumVecesElegido() + " veces";
 		            buffer.write(linea);
 		            buffer.newLine();
 		            
@@ -143,7 +143,7 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno> {
     	
         try{
         	
-            lector = new FileReader("C://Users/Jon/Desktop/RankingAlumnos.txt");
+            lector = new FileReader("C:\\\\1713\\\\eclipse-workspace\\\\RankingAlumnos.txt");
             BufferedReader buffer = new BufferedReader(lector);
             boolean eol = false;
             

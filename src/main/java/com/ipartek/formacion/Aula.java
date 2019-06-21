@@ -17,7 +17,7 @@ public class Aula {
 	private static DAOAlumnoArrayList dao = new DAOAlumnoArrayList(listaAlumnos);
 
 	static String[] alumnos = { "Ander", "Mounir", "Andoni", "Asier", "Jon C", "Arkaitz", "Aritz", "Manuel", "Eduardo",
-			"Eder I", "Eder S", "Gaizka", "Borja", "Verónica", "Jon A", "Jose Luís" };
+			"Eder I", "Eder S", "Gaizka", "Borja", "VerÃ³nica", "Jon A", "Jose LuÃ­s" };
 
 	/**
 	 * Rellena arrayList<Person> listaAlumnos con array de String alumnos, y
@@ -45,7 +45,7 @@ public class Aula {
 			Alumno alum = (Alumno) it.next();
 			cont++;
 			System.out.println(
-					cont + "º - " + alum.getNombre() + " -------- Elegido: " + alum.getNumVecesElegido() + " veces");
+					cont + "Âº - " + alum.getNombre() + " -------- Elegido: " + alum.getNumVecesElegido() + " veces");
 
 		}
 
@@ -58,7 +58,7 @@ public class Aula {
 		System.out.println("\nIntroduzca nombre del nuevo alumno: ");
 		nombre = (String) sc.nextLine();
 		dao.insert(new Alumno(nombre));
-		System.out.println("Añadido con éxito");
+		System.out.println("AÃ±adido con Ã©xito");
 	}
 
 	/**
@@ -73,9 +73,9 @@ public class Aula {
 		sc = new Scanner(System.in);
 		String nombre = (String) sc.nextLine();
 		if (dao.delete(nombre)) {
-			System.out.println("Eliminado con éxito");
+			System.out.println("Eliminado con Ã©xito");
 		} else {
-			System.out.println("No se pudo eliminar, no existía registro");
+			System.out.println("No se pudo eliminar, no existÃ­a registro");
 		}
 
 	}
@@ -116,7 +116,7 @@ public class Aula {
 		nombreNuevo = sc.nextLine();
 
 		if (dao.update(nombreAnterior, nombreNuevo)) {
-			System.out.println(nombreAnterior + "Cambiado con éxito por " + nombreNuevo);
+			System.out.println(nombreAnterior + "Cambiado con Ã©xito por " + nombreNuevo);
 		} else {
 			System.out.println("Error al cambiar, no existia registro.");
 		}
@@ -125,14 +125,14 @@ public class Aula {
 
 	private static void pintarMenu() {
 
-		System.out.println("\nIntroduzca la opción que quiera (introduzca número): "
+		System.out.println("\nIntroduzca la opciÃ³n que quiera (introduzca nÃºmero): "
 						+ "\n1 - Listar alumnos"
 						+ "\n2 - Crear alumno" 
 						+ "\n3 - Eliminar alumno" 
 						+ "\n4 - Buscar Alumno Afortunado para leer"
 						+ "\n5 - Modificar alumno" 
 						+ "\n6 - Guardar lista" 
-						+ "\n7 - Ver última lista guardada" 
+						+ "\n7 - Ver Ãºltima lista guardada" 
 						+ "\n0- Salir" 
 						+ "\nIntroduzca numero: ");
 	}
@@ -146,7 +146,7 @@ public class Aula {
 
 		try {
 			dao.guardar_mensaje(listaAlumnos);
-			System.out.println("Guardado con éxito.");
+			System.out.println("Guardado con Ã©xito.");
 		} catch (IOException e) {
 			System.out.println("Error");
 		}
@@ -211,7 +211,7 @@ public class Aula {
 				break;
 
 			default:
-				System.out.println("Introduce una opción metiendo un número del 1 al 4 o 0 para salir");
+				System.out.println("Introduce una opciÃ³n metiendo un nÃºmero del 1 al 4 o 0 para salir");
 			}
 
 		} while (!opcion.equals("0"));
