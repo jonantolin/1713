@@ -118,7 +118,7 @@ public class Aula {
 		
 		guardarListado();
 
-		mensaje = "El alumno escogido es: " + dao.getAll().get(alumSeleccionado).getNombre();
+		mensaje = " El alumno escogido es: " + dao.getAll().get(alumSeleccionado).getNombre();
 
 		return mensaje;
 	}
