@@ -101,7 +101,7 @@ public class Aula {
 		
 	}
 	
-	private static boolean nuevoAlumno() {
+	private static void nuevoAlumno() {
 		
 		boolean insertado;
 		String nombre;
@@ -109,10 +109,13 @@ public class Aula {
 		System.out.println("\nIntroduzca nombre del nuevo alumno: ");
 		nombre = (String) sc.nextLine();
 		insertado = dao.insert(new Alumno(nombre));
-		guardarListado();
-		System.out.println("Añadido con éxito");
 		
-		return insertado;
+		if(insertado) {
+			
+			guardarListado();
+			System.out.println("Añadido con éxito");
+		}
+
 	}
 
 	/**
@@ -223,8 +226,9 @@ public class Aula {
 	private static void pintarMenu() {
 	
 		
-		System.out.println("\nIntroduzca la opción que quiera (introduzca número): "
-						+ "\n1 -> Listar alumnos"
+		System.out.println(""
+						+ "\nIntroduzca la opción que quiera (introduzca número): "
+						+ "\n1 -> Ver Ranking"
 						+ "\n2 -> Crear alumno" 
 						+ "\n3 -> Eliminar alumno" 
 						+ "\n4 -> Buscar Alumno Afortunado para leer"
@@ -240,11 +244,11 @@ public class Aula {
 		Aula aula = new Aula();
 		//rellenarLista();
 		
-
+		System.out.println("RANKING DE VOLUNTARIOS PARA LEER");
 		String opcion = "0";
 
 		do {
-
+			
 			pintarMenu();
 
 			opcion = sc.next();

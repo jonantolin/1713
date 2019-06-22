@@ -24,7 +24,7 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 	private static DAOAlumnoFile INSTANCE;
 	private ArrayList<Alumno> lista;
 	private static final String DIRECTORIO_CASA = "C:\\\\Users\\\\Jon\\\\eclipse-workspace\\\\1713\\\\";
-	//private static final String DIRECTORIO_IPARTEK ="";
+	//private static final String DIRECTORIO_IPARTEK =""; TODO establecer directorio usado en ipartek
 
 	
 	/**
