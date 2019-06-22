@@ -45,7 +45,7 @@ public class Diamante implements Ordenable{
 
 	@Override
 	public int getValor() {
-		// TODO Auto-generated method stub
+		
 		return this.kilates;
 	}
 }

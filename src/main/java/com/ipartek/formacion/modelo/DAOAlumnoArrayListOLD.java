@@ -129,8 +129,6 @@ public class DAOAlumnoArrayListOLD implements IPersistible<Alumno>{
 		}
 	    public void guardar_mensaje(ArrayList<Alumno> lista) throws IOException{
 	    		
-	    	/*TODO Hacer que pueda usar los datos guardados, con Serialize o guardando
-		       los datos por comas (pj: Jon; 2 ) */
 	    	
 	        try{
 	        	
@@ -148,7 +146,7 @@ public class DAOAlumnoArrayListOLD implements IPersistible<Alumno>{
 					if(alumno == null && !terminado) {
 			            terminado = true;
 			            
-			            //TODO revisar ultimo registro que no sea nulo como pasa
+			           
 					}else {
 						linea = cont+"º - "+alumno.getNombre() + " -------- Elegido: " + alumno.getNumVecesElegido() + " veces";
 			            buffer.write(linea);
@@ -168,8 +166,6 @@ public class DAOAlumnoArrayListOLD implements IPersistible<Alumno>{
 	    
 	    public void LeerMensaje(){
 	    	
-	    	/*TODO Hacer que pueda usar los datos guardados, con Serialize o guardando
-	    	       los datos por comas (pj: Jon; 2 ) */
 	    	
 	        try{
 	        	FileReader lector;

@@ -15,7 +15,7 @@ public class Calculadora {
 	}
 	
 	public static int restar(int a, int b) {
-		//TODO terminar de implementar
+		
 		return a - b;
 	}
 	

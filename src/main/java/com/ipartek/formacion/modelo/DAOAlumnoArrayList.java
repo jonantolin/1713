@@ -1,29 +1,21 @@
 package com.ipartek.formacion.modelo;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 import com.ipartek.formacion.Alumno;
 
 //No implemento IPersistible<P> sino directamente <Alumno> porque se que es para Alumnos
 // A esto se le llama "interferir" -> pj: Se le interfiere con Alumno
-public class DAOAlumnoArrayList implements IPersistible<Alumno>, Serializable {
+public class DAOAlumnoArrayList implements IPersistible<Alumno> {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private static DAOAlumnoArrayList INSTANCE;
 	private ArrayList<Alumno> lista;
-
+	
+	
+	
 	/**
 	 * Encargado de devolver solo un objeto, patron Singleton La palabra reservada
 	 * synchronized hace que si se le llama al mismo tiempo, cree uno y al terminar,
@@ -51,7 +43,9 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno>, Serializable {
 		super();
 		this.lista = lista;
 	}
-
+	
+	
+	
 	@Override
 	public List<Alumno> getAll() {
 		return lista;
@@ -78,32 +72,14 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno>, Serializable {
 		return true;
 	}
 
-	public boolean delete(String nombre) {
-
-		boolean borrado = false;
-
-		for (Iterator<Alumno> iterator = lista.iterator(); iterator.hasNext();) {
-
-			Alumno alum = (Alumno) iterator.next();
-
-			if (alum.getNombre().equals(nombre)) {
-
-				iterator.remove();
-				borrado = true;
-			}
-
-		}
-
-		return borrado;
-	}
+	
 
 	@Override
 	public boolean update(Alumno pojo) {
-
-		// TODO encontrar en la lista por pojo.getId, al encontrarlo setNombre
-		// O con setNombr
-
-		// System.out.println("Añadido");
+		Scanner sc = new Scanner(System.in);
+		String nuevoNombre = sc.nextLine();
+		pojo.setNombre(nuevoNombre);
+		sc.close();
 		return true;
 	}
 
@@ -123,72 +99,31 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno>, Serializable {
 
 		return true;
 	}
-
-	// Guardo en un fichero la el objeto lista con Serialize
-	public void guardarMensaje(ArrayList<Alumno> lista) throws IOException {
-
-		try {
-
-			// String linea="";
-			File almacen = new File("C:\\1713\\eclipse-workspace\\RankingAlumnos.txt");
-			FileOutputStream fos = new FileOutputStream(almacen);
-
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-			oos.writeObject(lista);
-			oos.close();
-
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
-
-	}
-
-	@SuppressWarnings("unchecked")
-	public void LeerMensaje() {
-
-		/*
-		 * TODO Hacer que pueda usar los datos guardados, con Serialize o guardando los
-		 * datos por comas (pj: Jon; 2 )
-		 */
-
-		try {
-			FileInputStream lector;
-			lector = new FileInputStream("C:\\\\1713\\\\eclipse-workspace\\\\RankingAlumnos.txt");
-			// BufferedReader buffer = new BufferedReader(lector);
-
-			ObjectInputStream ois = new ObjectInputStream(lector);
-
-			Object aux = ois.readObject();
-			
-			lista = (ArrayList <Alumno>)aux;
-			
-			ois.close();
-//            boolean eol = false;
-//            
-//            while(!eol) {
-//            String linea = buffer.readLine();
-//            
-//	            if(linea == null) {
-//	            	buffer.close();
-//	            	eol = true;
-//	            }else {
-//	            	System.out.println(linea);
-//	            }
-//            }
-
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
+	
 
 	@Override
 	public boolean delete(int id) {
 		// TODO implementar borrar por id
 		return false;
+	}
+	
+	public boolean delete(String nombre) {
+
+		boolean borrado = false;
+
+		for (Iterator<Alumno> iterator = lista.iterator(); iterator.hasNext();) {
+
+			Alumno alum = (Alumno) iterator.next();
+
+			if (alum.getNombre().equals(nombre)) {
+
+				iterator.remove();
+				borrado = true;
+			}
+
+		}
+
+		return borrado;
 	}
 
 }

@@ -13,7 +13,7 @@ import com.ipartek.formacion.modelo.DAOAlumnoFile;
  * Aplicación para elegir un alumno aleatorio para que lea,
  * Permite ver un ranking con las veces que ha sido seleccionado cada alumno
  * Permite crear, eliminar, actualizar alumnos (CRUD)
- * Tambien se puede guardar en un fichero de texto el ranking y visualizarlo
+ * Se guarda automaticamente en un fichero de texto el ranking y se inicia con el mismo
  * 
  * @author Jon
  *
@@ -28,68 +28,95 @@ public class Aula {
 
 	static String[] alumnos = { "Ander", "Mounir", "Andoni", "Asier", "Jon C", "Arkaitz", "Aritz", "Manuel", "Eduardo",
 			"Eder I", "Eder S", "Gaizka", "Borja", "Verónica", "Jon A", "Jose Luís" };
+	
+	private static final String MOSTRAR_RANKING = "1";
+	private static final String CREAR_ALUMNO = "2";
+	private static final String ELIMINAR_ALUMNO = "3";
+	private static final String BUSCAR_VOLUNTARIO = "4";
+	private static final String MODIFICAR_ALUMNO = "5";
+	private static final String NUEVO_RANKING = "6";
+	private static final String SALIR = "0";
+	
+	
 
 	/**
-	 * Rellena arrayList<Person> listaAlumnos con array de String alumnos, y
-	 * arrayList<Integer> vecesElegido se establece a 0
+	 * Rellena arrayList<Alumno> listaAlumnos con array de String alumnos,
+	 * y vecesElegido se establece a 0
 	 * 
+	 * Se usa la primera vez o cuando no existe registro guardado
 	 * @see alumnos
 	 */
 	private static void rellenarLista() {
+		
+		listaAlumnos = new ArrayList<Alumno>();
+				 
 		for (int i = 0; i < alumnos.length; i++) {
 
-			listaAlumnos.add(new Alumno(alumnos[i]));	
+				listaAlumnos.add(new Alumno(alumnos[i]));	
 		}
+		
 
 	}
-
+	
 	private static void listado() {
 		
+		// Comprueba si existe ranking guardado en archivo, ordena y lo muestra, sino crea uno nuevo con ranking a 0
 		if(cargarListaGuardada()) {
+			
 			Collections.sort(dao.getAll());
+			
+			Iterator<Alumno> it = dao.getAll().iterator();
+
+			int cont = 0;
+			
+			System.out.println("Ranking de alumnos elegidos: ");
+			System.out.println("-----------------------------------------------------");
+			System.out.println("Pos | Nombre | Veces Elegido");
+			while (it.hasNext()) {
+				
+				
+				Alumno alum = (Alumno) it.next();
+				cont++;
+				System.out.println(
+						cont + "º" +" | "+ alum.getNombre() + " | " + alum.getNumVecesElegido());
+
+			}
+			
 		}else {
-			rellenarLista();
-			dao = new DAOAlumnoFile(listaAlumnos);
 			
+			nuevoRanking();
 		}
-		
-		guardarListado();
-
-		Iterator<Alumno> it = dao.getAll().iterator();
-
-		int cont = 0;
-		
-		System.out.println("Ranking de alumnos elegidos: ");
-		System.out.println("-----------------------------------------------------");
-		System.out.println("Pos | Nombre | Veces Elegido");
-		while (it.hasNext()) {
-			
-			
-			Alumno alum = (Alumno) it.next();
-			cont++;
-			System.out.println(
-					cont + "º" +" | "+ alum.getNombre() + " | " + alum.getNumVecesElegido());
-
-		}
-		
-		
 
 	}
-
-	private static void nuevoAlumno() {
-
+	
+	/**
+	 * Crea un nuevo Ranking de alumnos del Aula con numVecesElegido = 0
+	 */
+	private static void nuevoRanking() {
+		
+		rellenarLista();
+		dao = new DAOAlumnoFile(listaAlumnos);
+		guardarListado();
+		listado();
+		
+	}
+	
+	private static boolean nuevoAlumno() {
+		
+		boolean insertado;
 		String nombre;
 
 		System.out.println("\nIntroduzca nombre del nuevo alumno: ");
 		nombre = (String) sc.nextLine();
-		dao.insert(new Alumno(nombre));
+		insertado = dao.insert(new Alumno(nombre));
 		guardarListado();
 		System.out.println("Añadido con éxito");
+		
+		return insertado;
 	}
 
 	/**
 	 * Busca el alumno en la listaAlumnos y lo elimina
-	 * 
 	 * @param nombre String nombre de alumno a eliminar
 	 */
 	private static void eliminarAlumno() {
@@ -98,6 +125,7 @@ public class Aula {
 
 		sc = new Scanner(System.in);
 		String nombre = (String) sc.nextLine();
+		
 		if (dao.delete(nombre)) {
 			guardarListado();
 			System.out.println("Eliminado con éxito");	
@@ -108,7 +136,7 @@ public class Aula {
 	}
 
 	/**
-	 * 
+	 * Devuelve String con el voluntario para leer y le suma 1 a NumVecesElegido
 	 * @return String con el nombre del alumno elegido para leer
 	 */
 	private String afortunado() {
@@ -138,6 +166,7 @@ public class Aula {
 
 		String nombreAnterior;
 		String nombreNuevo;
+		
 		System.out.println("\nIntroduzca nombre que quiere actualizar: ");
 		nombreAnterior = sc.nextLine();
 
@@ -153,49 +182,63 @@ public class Aula {
 		// dao.update(pojo);
 	}
 
-	private static void pintarMenu() {
-		
-		//TODO implementar reinicar listado
-		
-		System.out.println("\nIntroduzca la opción que quiera (introduzca número): "
-						+ "\n1 - Listar alumnos"
-						+ "\n2 - Crear alumno" 
-						+ "\n3 - Eliminar alumno" 
-						+ "\n4 - Buscar Alumno Afortunado para leer"
-						+ "\n5 - Modificar alumno" 
-						//+ "\n6 - Reiniciar Ranking" 
-						+ "\n0 - Salir" 
-						+ "\nIntroduzca numero: ");
-	}
-
+	
+	/**
+	 * Ordena al DAO deserializar y devolver el ranking guardado,
+	 * listaAlumnos recoge y copia el objeto deserializado devuelto por el DAO siendo esta variable de clase local
+	 * @return booleano si ha podido recuperar ranking guardado
+	 */
 	private static boolean cargarListaGuardada() {
+		
 		boolean cargada = false;
+		
 		try {
 			listaAlumnos = dao.LeerListaGuardada();
-			cargada = true;
+			if(listaAlumnos.size() > 0) {
+				cargada = true;
+			}
 		}catch(Exception e) {
 			
 		}
-		return cargada;
 		
+		return cargada;	
 	}
-
+	
+	
+	/**
+	 * Ordena al DAO guardar el ranking en archivo
+	 */
 	private static void guardarListado() {
 
 		try {
 			dao.guardarLista(listaAlumnos);
-			System.out.println("Guardado con éxito.");
+			
 		} catch (IOException e) {
 			System.out.println("Error");
 		}
 
 	}
+	
 
+	private static void pintarMenu() {
+	
+		
+		System.out.println("\nIntroduzca la opción que quiera (introduzca número): "
+						+ "\n1 -> Listar alumnos"
+						+ "\n2 -> Crear alumno" 
+						+ "\n3 -> Eliminar alumno" 
+						+ "\n4 -> Buscar Alumno Afortunado para leer"
+						+ "\n5 -> Modificar alumno" 
+						+ "\n6 -> Reiniciar Ranking" 
+						+ "\n0 -> Salir" 
+						+ "\n\nIntroduzca numero: ");
+	}
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
 		Aula aula = new Aula();
-		rellenarLista();
+		//rellenarLista();
 		
 
 		String opcion = "0";
@@ -208,32 +251,37 @@ public class Aula {
 
 			switch (opcion) {
 
-			case "1":
+			case MOSTRAR_RANKING:
 				
 				listado();
 				break;
 
-			case "2":
+			case CREAR_ALUMNO:
 
 				nuevoAlumno();
 				break;
 
-			case "3":
+			case ELIMINAR_ALUMNO:
 
 				eliminarAlumno();
 				break;
 
-			case "4":
+			case BUSCAR_VOLUNTARIO:
 
 				System.out.println(aula.afortunado());
 				break;
 
-			case "5":
+			case MODIFICAR_ALUMNO:
 
 				actualizarAlumno();
 				break;
+				
+			case NUEVO_RANKING:
 
-			case "0":
+				nuevoRanking();
+				break;
+				
+			case SALIR:
 
 				System.out.println("Hasta pronto");
 				break;

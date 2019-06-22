@@ -10,7 +10,7 @@ import java.util.Scanner;
  * Usa clase Aula 
  * Un menu con 4 posibilidades (Listar, Crear, Eliminar, Elegir alumno aleatorio que lee) 
  * 
- *  TODO cambiar numero magico de opcion en el switch por constantes
+ *  
  */
 public class AulaApp {
 
@@ -25,7 +25,7 @@ public class AulaApp {
 		
 		do{
 			
-			System.out.println("\nIntroduzca la opción que quiera (introduzca número): "
+			System.out.println("\nIntroduzca la opciï¿½n que quiera (introduzca nï¿½mero): "
 					+ "\n1 - Listar alumnos"
 					+ "\n2 - Crear alumno"
 					+ "\n3 - Eliminar alumno"
@@ -50,7 +50,7 @@ public class AulaApp {
 					sc = new Scanner(System.in);
 					nom = (String)sc.nextLine();
 					aula.nuevoAlumno(nom);
-					System.out.println("Introducido con éxito\n");
+					System.out.println("Introducido con ï¿½xito\n");
 					break;
 					
 				case "3":
@@ -72,7 +72,7 @@ public class AulaApp {
 					break;
 					
 				default:
-					System.out.println("Introduce una opción metiendo un número del 1 al 4 o 0 para salir");
+					System.out.println("Introduce una opciï¿½n metiendo un nï¿½mero del 1 al 4 o 0 para salir");
 			}
 			
 			

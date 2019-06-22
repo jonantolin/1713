@@ -47,7 +47,7 @@ public class Cerdo implements Ordenable{
 
 	@Override
 	public int getValor() {
-		// TODO Auto-generated method stub
+		
 		return this.peso;
 	}
 	

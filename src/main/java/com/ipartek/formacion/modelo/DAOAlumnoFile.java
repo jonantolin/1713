@@ -20,23 +20,19 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 	// para Alumnos
 	// A esto se le llama "interferir" -> pj: Se le interfiere con Alumno
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * 
-	 */
-
 	private static DAOAlumnoFile INSTANCE;
 	private ArrayList<Alumno> lista;
+	private static final String DIRECTORIO_CASA = "C:\\\\Users\\\\Jon\\\\eclipse-workspace\\\\1713\\\\";
+	//private static final String DIRECTORIO_IPARTEK ="";
 
+	
 	/**
 	 * Encargado de devolver solo un objeto, patron Singleton La palabra reservada
 	 * synchronized hace que si se le llama al mismo tiempo, cree uno y al terminar,
 	 * cree el otro y así sucesivamente
 	 * 
-	 * @return
+	 * @return DAOAlumnoFile el objeto
 	 */
 	public static synchronized DAOAlumnoFile getInstance() {
 
@@ -47,14 +43,16 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 	}
 
 	/**
-	 * Privado para que nadie pueda crear objetos
+	 * Privado para que nadie pueda crear objetos sin Sigleton getInstance()
 	 */
 	private DAOAlumnoFile() {
+		
 		super();
 		this.lista = new ArrayList<Alumno>();
 	}
 
 	public DAOAlumnoFile(ArrayList<Alumno> lista) {
+		
 		super();
 		this.lista = lista;
 	}
@@ -66,6 +64,7 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 
 	@Override
 	public Alumno getById(int id) {
+		
 		Alumno resul = null;
 
 		for (Alumno a : lista) {
@@ -79,6 +78,7 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 
 	@Override
 	public boolean insert(Alumno pojo) {
+		
 		lista.add(pojo);
 		return true;
 	}
@@ -108,13 +108,19 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 		return true;
 	}
 
-	public boolean update(String nombreViejo, String nombreNuevo) {
+	/**
+	 * Localiza y modifica el nombre del alumno seleccionado
+	 * @param alumnoElegido nombre del Alumno que se quiere modificar
+	 * @param nombreNuevo nuevo nombre para el alumnoElegido
+	 * @return boolean si ha sido actualizado o no
+	 */
+	public boolean update(String alumnoElegido, String nombreNuevo) {
 
 		for (Iterator<Alumno> iterator = lista.iterator(); iterator.hasNext();) {
 
 			Alumno alum = (Alumno) iterator.next();
 
-			if (alum.getNombre().equals(nombreViejo)) {
+			if (alum.getNombre().equals(alumnoElegido)) {
 
 				// iterator.remove();
 				alum.setNombre(nombreNuevo);
@@ -124,12 +130,18 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 
 		return true;
 	}
-
+	
+	
+	/**
+	 * Guarda en File almacen un objeto serializado de tipo ArrayList de alumnos
+	 * @param lista ArrayList<Alumno> que será serializado y guardado
+	 * @throws IOException si no se puede guardar en la ruta especificada
+	 */
 	public void guardarLista(ArrayList<Alumno> lista) throws IOException {
 
 		try {
 
-			File almacen = new File("C:\\\\Users\\\\Jon\\\\eclipse-workspace\\\\1713\\\\RankingAlumnos.txt");
+			File almacen = new File(DIRECTORIO_CASA + "RankingAlumnos.txt");
 			FileOutputStream fos = new FileOutputStream(almacen);
 
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -138,21 +150,25 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 			oos.close();
 
 		} catch (IOException ex) {
-			ex.printStackTrace();
+			System.out.println("No se pudo guardar en el directorio: " + ex.getMessage());
 		}
 
 	}
 
+	
+	/**
+	 * Deserializa y devuelve un objeto ArrayList extraido de la ruta de lector FileInputStream
+	 * @return lista ArrayList<Alumno> deserializado
+	 * @throws IOException si no se puede cargar
+	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<Alumno> LeerListaGuardada() {
 
 		try {
+			
 			FileInputStream lector;
-			lector = new FileInputStream("C:\\Users\\Jon\\eclipse-workspace\\1713\\RankingAlumnos.txt");
-			// BufferedReader buffer = new BufferedReader(lector);
-
+			lector = new FileInputStream(DIRECTORIO_CASA+ "RankingAlumnos.txt");
 			ObjectInputStream ois = new ObjectInputStream(lector);
-
 			Object aux = ois.readObject();
 
 			lista = (ArrayList<Alumno>) aux;
@@ -164,7 +180,8 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 		} catch (Exception e) {
 			//e.printStackTrace();
 		}
-		return lista;
+		
+			return lista;
 
 	}
 

@@ -49,7 +49,6 @@ public class ArrayListTest {
 		
 		// Usar contains para saber si existe "Barakaldo" y "Korea la buena"
 		
-		//TODO mirar como ordenar alfabeticamente
 		
 	}
 	
@@ -103,7 +102,7 @@ public class ArrayListTest {
 		assertEquals(2, cont);
 	}
 	
-	//TODO probar eliminar todos, probar contains Barakaldo y korea la buena
+	
 	
 	@Test
 	public void ordenarTest() {
