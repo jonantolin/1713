@@ -73,13 +73,14 @@ public class VoluntariosApp {
 			System.out.println("-----------------------------------------------------");
 			System.out.println("           Pos | Nombre | Veces Elegido");
 			System.out.println("           ----------------------------");
+			
 			while (it.hasNext()) {
-				
 				
 				Alumno alum = (Alumno) it.next();
 				cont++;
-				System.out.println(
-						"           "+cont + "º" +" | "+ alum.getNombre() + " | " + alum.getNumVecesElegido());
+				
+				System.out.println("           "+cont + "º" +" | "+ alum.getNombre()
+										+ " | " + alum.getNumVecesElegido());
 
 			}
 			
