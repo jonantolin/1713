@@ -69,16 +69,17 @@ public class Aula {
 
 			int cont = 0;
 			
-			System.out.println("Ranking de alumnos elegidos: ");
+			System.out.println("            Ranking de alumnos elegidos: ");
 			System.out.println("-----------------------------------------------------");
-			System.out.println("Pos | Nombre | Veces Elegido");
+			System.out.println("           Pos | Nombre | Veces Elegido");
+			System.out.println("           ----------------------------");
 			while (it.hasNext()) {
 				
 				
 				Alumno alum = (Alumno) it.next();
 				cont++;
 				System.out.println(
-						cont + "º" +" | "+ alum.getNombre() + " | " + alum.getNumVecesElegido());
+						"           "+cont + "º" +" | "+ alum.getNombre() + " | " + alum.getNumVecesElegido());
 
 			}
 			
@@ -226,23 +227,23 @@ public class Aula {
 	private static void pintarMenu() {
 	
 		
-		System.out.println(""
-						+ "\nIntroduzca la opción que quiera (introduzca número): "
-						+ "\n1 -> Ver Ranking"
-						+ "\n2 -> Crear alumno" 
-						+ "\n3 -> Eliminar alumno" 
-						+ "\n4 -> Buscar Alumno Afortunado para leer"
-						+ "\n5 -> Modificar alumno" 
-						+ "\n6 -> Reiniciar Ranking" 
-						+ "\n0 -> Salir" 
-						+ "\n\nIntroduzca numero: ");
+		System.out.println("\n--------------------------------------------------"
+						+ "\n        Introduzca la opción que quiera:"
+						+ "\n\n            1 -> Ver Ranking"
+						+ "\n            2 -> Crear alumno" 
+						+ "\n            3 -> Eliminar alumno" 
+						+ "\n            4 -> Buscar Alumno Afortunado para leer"
+						+ "\n            5 -> Modificar alumno" 
+						+ "\n            6 -> Reiniciar Ranking" 
+						+ "\n\n            0 -> Salir" 
+						+ "\n\n--------------------------------------------------" 
+						+ "\n\nIntroduzca número: ");
 	}
 	
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+		
 
 		Aula aula = new Aula();
-		//rellenarLista();
 		
 		System.out.println("RANKING DE VOLUNTARIOS PARA LEER");
 		String opcion = "0";
@@ -291,7 +292,7 @@ public class Aula {
 				break;
 
 			default:
-				System.out.println("Introduce una opción metiendo un número del 1 al 4 o 0 para salir");
+				System.out.println("Introduce una opción metiendo un número del 1 al 6 o 0 para salir");
 			}
 
 		} while (!opcion.equals("0"));
