@@ -18,7 +18,7 @@ import com.ipartek.formacion.modelo.DAOAlumnoFile;
  * @author Jon
  *
  */
-public class Aula {
+public class VoluntariosApp {
 
 	private static Scanner sc = new Scanner(System.in);
 
@@ -69,7 +69,7 @@ public class Aula {
 
 			int cont = 0;
 			
-			System.out.println("            Ranking de alumnos elegidos: ");
+			System.out.println("            RANKING DE VOLUNTARIOS PARA LEER ");
 			System.out.println("-----------------------------------------------------");
 			System.out.println("           Pos | Nombre | Veces Elegido");
 			System.out.println("           ----------------------------");
@@ -243,9 +243,10 @@ public class Aula {
 	public static void main(String[] args) {
 		
 
-		Aula aula = new Aula();
+		VoluntariosApp aula = new VoluntariosApp();
 		
 		System.out.println("RANKING DE VOLUNTARIOS PARA LEER");
+		System.out.println("--------------------------------");
 		String opcion = "0";
 
 		do {

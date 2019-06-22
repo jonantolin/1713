@@ -12,7 +12,7 @@ import java.util.Scanner;
  * 
  *  
  */
-public class AulaApp {
+public class AulaAppOLD {
 
 	public static void main(String[] args) {
 
