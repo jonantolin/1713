@@ -37,14 +37,23 @@ public class Aula {
 	 */
 	private static void rellenarLista() {
 		for (int i = 0; i < alumnos.length; i++) {
-			listaAlumnos.add(new Alumno(alumnos[i]));
+
+			listaAlumnos.add(new Alumno(alumnos[i]));	
 		}
 
 	}
 
 	private static void listado() {
-		cargarListaGuardada();
-		Collections.sort(dao.getAll());
+		
+		if(cargarListaGuardada()) {
+			Collections.sort(dao.getAll());
+		}else {
+			rellenarLista();
+			dao = new DAOAlumnoFile(listaAlumnos);
+			
+		}
+		
+		guardarListado();
 
 		Iterator<Alumno> it = dao.getAll().iterator();
 
@@ -62,6 +71,8 @@ public class Aula {
 					cont + "º" +" | "+ alum.getNombre() + " | " + alum.getNumVecesElegido());
 
 		}
+		
+		
 
 	}
 
@@ -157,9 +168,16 @@ public class Aula {
 						+ "\nIntroduzca numero: ");
 	}
 
-	private static void cargarListaGuardada() {
-		listaAlumnos = dao.LeerListaGuardada();
-
+	private static boolean cargarListaGuardada() {
+		boolean cargada = false;
+		try {
+			listaAlumnos = dao.LeerListaGuardada();
+			cargada = true;
+		}catch(Exception e) {
+			
+		}
+		return cargada;
+		
 	}
 
 	private static void guardarListado() {
@@ -191,7 +209,7 @@ public class Aula {
 			switch (opcion) {
 
 			case "1":
-
+				
 				listado();
 				break;
 

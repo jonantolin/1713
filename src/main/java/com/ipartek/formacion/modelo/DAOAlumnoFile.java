@@ -125,13 +125,11 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 		return true;
 	}
 
-
 	public void guardarLista(ArrayList<Alumno> lista) throws IOException {
 
 		try {
 
-		
-			File almacen = new File("C:\\1713\\eclipse-workspace\\RankingAlumnos.txt");
+			File almacen = new File("C:\\\\Users\\\\Jon\\\\eclipse-workspace\\\\1713\\\\RankingAlumnos.txt");
 			FileOutputStream fos = new FileOutputStream(almacen);
 
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -145,11 +143,12 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<Alumno> LeerListaGuardada() {
 
 		try {
 			FileInputStream lector;
-			lector = new FileInputStream("C:\\\\1713\\\\eclipse-workspace\\\\RankingAlumnos.txt");
+			lector = new FileInputStream("C:\\Users\\Jon\\eclipse-workspace\\1713\\RankingAlumnos.txt");
 			// BufferedReader buffer = new BufferedReader(lector);
 
 			ObjectInputStream ois = new ObjectInputStream(lector);
@@ -160,11 +159,10 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 
 			ois.close();
 
-
 		} catch (IOException ex) {
-			ex.printStackTrace();
+			//ex.printStackTrace();
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return lista;
 

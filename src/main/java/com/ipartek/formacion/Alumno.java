@@ -2,7 +2,11 @@ package com.ipartek.formacion;
 
 public class Alumno extends Person implements Comparable<Alumno>{
 
-	private int numVecesElegido;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int numVecesElegido=0;
 	
 	public Alumno(String nombre) {
 		super();

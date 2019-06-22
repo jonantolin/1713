@@ -144,6 +144,7 @@ public class DAOAlumnoArrayList implements IPersistible<Alumno>, Serializable {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public void LeerMensaje() {
 
 		/*

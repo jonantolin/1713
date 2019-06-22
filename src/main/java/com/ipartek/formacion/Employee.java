@@ -4,6 +4,11 @@ import java.util.Date;
 
 public class Employee extends Person {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public final float SALARIO_MINIMO = 937.05f;
 	
 	private int numEmpleado;
@@ -56,7 +61,7 @@ public class Employee extends Person {
 	
 	@Override
 	public String toString() {
-		return "Número de empleado=" + numEmpleado + ", fecha de contrato=" + fechaContrato + ", Salario=" + salario
+		return "Nï¿½mero de empleado=" + numEmpleado + ", fecha de contrato=" + fechaContrato + ", Salario=" + salario
 				+ ", Nombre =" + getNombre() + ", Edad=" + getEdad() + ", Altura=" + getAltura()
 				+ ", Peso=" + getPeso() + ", Color de ojos=" + getColorOjos() + ", Sexo=" + getSexo() + "]";
 	}
