@@ -252,11 +252,9 @@ public class VoluntariosApp {
 						+ "\n\nIntroduzca número: ");
 	}
 	
+	
 	public static void main(String[] args) {
 		
-		
-		
-		//
 		
 		System.out.println("RANKING DE VOLUNTARIOS PARA LEER");
 		System.out.println("--------------------------------");
