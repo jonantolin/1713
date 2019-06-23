@@ -20,7 +20,7 @@ import com.ipartek.formacion.modelo.DAOAlumnoFile;
  */
 public class VoluntariosApp {
 
-	private static Scanner sc = new Scanner(System.in);
+	public static Scanner sc = new Scanner(System.in);
 
 	private static int alumSeleccionado = 0;
 	private static ArrayList<Alumno> listaAlumnos = new ArrayList<Alumno>();
@@ -112,8 +112,9 @@ public class VoluntariosApp {
 		String nombre;
 
 		System.out.println("\nIntroduzca nombre del nuevo alumno: ");
-		nombre = (String) sc.nextLine();
-		insertado = dao.insert(new Alumno(nombre));
+		nombre = sc.nextLine();
+		Alumno alumNuevo = new Alumno(nombre);
+		insertado = dao.insert(alumNuevo);
 		
 		if(insertado) {
 			
@@ -159,9 +160,10 @@ public class VoluntariosApp {
 		} while (numAleatorio == alumSeleccionado);
 
 		alumSeleccionado = numAleatorio;
+		
+		Alumno elegido = dao.getAll().get(alumSeleccionado);
 
-		dao.getAll().get(alumSeleccionado)
-				.setNumVecesElegido(dao.getAll().get(alumSeleccionado).getNumVecesElegido() + 1);
+		elegido.setNumVecesElegido(elegido.getNumVecesElegido() + 1); //Suma 1 a vecesElegido del alumno
 		
 		guardarListado();
 
@@ -189,7 +191,7 @@ public class VoluntariosApp {
 
 		if (dao.update(nombreAnterior, nombreNuevo)) {
 			guardarListado();
-			System.out.println(nombreAnterior + "Cambiado con éxito por " + nombreNuevo);
+			System.out.println(nombreAnterior + " cambiado con éxito por " + nombreNuevo);
 		} else {
 			System.out.println("Error al cambiar, no existia registro.");
 		}
@@ -253,16 +255,22 @@ public class VoluntariosApp {
 	public static void main(String[] args) {
 		
 		
+		
+		//
+		
 		System.out.println("RANKING DE VOLUNTARIOS PARA LEER");
 		System.out.println("--------------------------------");
 		String opcion = "0";
 
 		do {
 			
+			
 			pintarMenu();
 
 			opcion = sc.next();
-
+			
+			sc = new Scanner(System.in);
+			
 			switch (opcion) {
 
 			case MOSTRAR_RANKING:
@@ -303,10 +311,13 @@ public class VoluntariosApp {
 			default:
 				System.out.println("Introduce una opción metiendo un número del 1 al 6 o 0 para salir");
 			}
-
+			
+			
+			
 		} while (!opcion.equals("0"));
-
+		
 		sc.close();
+		
 	}
 
 }
