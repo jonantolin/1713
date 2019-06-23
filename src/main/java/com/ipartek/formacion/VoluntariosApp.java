@@ -22,11 +22,11 @@ public class VoluntariosApp {
 
 	private static Scanner sc = new Scanner(System.in);
 
-	private int alumSeleccionado = 0;
+	private static int alumSeleccionado = 0;
 	private static ArrayList<Alumno> listaAlumnos = new ArrayList<Alumno>();
 	private static DAOAlumnoFile dao = new DAOAlumnoFile(listaAlumnos);
 
-	static String[] alumnos = { "Ander", "Mounir", "Andoni", "Asier", "Jon C", "Arkaitz", "Aritz", "Manuel", "Eduardo",
+	private static String[] alumnos = { "Ander", "Mounir", "Andoni", "Asier", "Jon C", "Arkaitz", "Aritz", "Manuel", "Eduardo",
 			"Eder I", "Eder S", "Gaizka", "Borja", "Verónica", "Jon A", "Jose Luís" };
 	
 	private static final String MOSTRAR_RANKING = "1";
@@ -144,7 +144,7 @@ public class VoluntariosApp {
 	 * Devuelve String con el voluntario para leer y le suma 1 a NumVecesElegido
 	 * @return String con el nombre del alumno elegido para leer
 	 */
-	private String afortunado() {
+	private static void afortunado() {
 
 		String mensaje;
 		int numAleatorio = 0; // Servira de indice para array / lista
@@ -163,8 +163,9 @@ public class VoluntariosApp {
 		guardarListado();
 
 		mensaje = " El alumno escogido es: " + dao.getAll().get(alumSeleccionado).getNombre();
+		
+		System.out.println(mensaje);
 
-		return mensaje;
 	}
 
 	private static void actualizarAlumno() {
@@ -184,7 +185,7 @@ public class VoluntariosApp {
 		} else {
 			System.out.println("Error al cambiar, no existia registro.");
 		}
-		// dao.update(pojo);
+
 	}
 
 	
@@ -243,8 +244,6 @@ public class VoluntariosApp {
 	
 	public static void main(String[] args) {
 		
-
-		VoluntariosApp aula = new VoluntariosApp();
 		
 		System.out.println("RANKING DE VOLUNTARIOS PARA LEER");
 		System.out.println("--------------------------------");
@@ -275,7 +274,7 @@ public class VoluntariosApp {
 
 			case BUSCAR_VOLUNTARIO:
 
-				System.out.println(aula.afortunado());
+				afortunado();
 				break;
 
 			case MODIFICAR_ALUMNO:
