@@ -122,7 +122,6 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 
 			if (alum.getNombre().equals(alumnoElegido)) {
 
-				// iterator.remove();
 				alum.setNombre(nombreNuevo);
 			}
 

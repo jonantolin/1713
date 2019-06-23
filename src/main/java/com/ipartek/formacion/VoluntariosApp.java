@@ -58,9 +58,12 @@ public class VoluntariosApp {
 
 	}
 	
+	/**
+	 * Comprueba si existe ranking guardado en archivo, ordena y lo muestra, sino crea uno nuevo con valores a 0
+	 */
 	private static void listado() {
 		
-		// Comprueba si existe ranking guardado en archivo, ordena y lo muestra, sino crea uno nuevo con ranking a 0
+		
 		if(cargarListaGuardada()) {
 			
 			Collections.sort(dao.getAll());
@@ -167,7 +170,12 @@ public class VoluntariosApp {
 		System.out.println(mensaje);
 
 	}
-
+	
+	/**
+	 * Recoge String del nombre a cambiar y del nuevo nombre y los envía al DAO por parámetros,
+	 *  despues guarda la lista actualizada e imprime por pantalla el cambio realizado
+	 *  @see DAOAlumnofile.update(nombreAnterior, nombreNuevo)
+	 */
 	private static void actualizarAlumno() {
 
 		String nombreAnterior;
