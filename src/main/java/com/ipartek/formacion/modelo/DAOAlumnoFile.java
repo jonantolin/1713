@@ -23,7 +23,8 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 	private static final long serialVersionUID = 1L;
 	private static DAOAlumnoFile INSTANCE;
 	private ArrayList<Alumno> lista;
-	private static final String RUTA_ARCHIVO = "C:\\1713\\eclipse-workspace\\1713\\src\\main\\resources\\";
+	//private static final String RUTA_ARCHIVO_IPARTEK = "C:\\1713\\eclipse-workspace\\1713\\src\\main\\resources\\";
+	private static final String RUTA_ARCHIVO_CASA = "C:\\Users\\Jon\\eclipse-workspace\\1713\\src\\main\\resources\\";
 	private static final String NOMBRE_ARCHIVO = "RankingAlumnos.txt";
 	
 	//TODO fichero como ruta relativa
@@ -146,7 +147,7 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 			
 			//ClassLoader classLoader = new DAOAlumnoFile().getClass().getClassLoader();
 		
-			File almacen = new File(RUTA_ARCHIVO+ NOMBRE_ARCHIVO); 
+			File almacen = new File(RUTA_ARCHIVO_CASA+ NOMBRE_ARCHIVO); 
 			
 			//TODO mirar forma de guardar en carpeta resources sin especificar ruta
 //			if(!almacen.exists()) {
@@ -180,7 +181,7 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 		try {
 			
 			FileInputStream lector;
-			lector = new FileInputStream(RUTA_ARCHIVO + NOMBRE_ARCHIVO);
+			lector = new FileInputStream(RUTA_ARCHIVO_CASA + NOMBRE_ARCHIVO);
 			ObjectInputStream ois = new ObjectInputStream(lector);
 			Object aux = ois.readObject();
 			

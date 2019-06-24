@@ -3,7 +3,7 @@ package com.ipartek.formacion;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.Scanner;
 
 import com.ipartek.formacion.modelo.DAOAlumnoFile;
@@ -68,7 +68,7 @@ public class VoluntariosApp {
 			
 			Collections.sort(dao.getAll());
 			
-			Iterator<Alumno> it = dao.getAll().iterator();
+			//Iterator<Alumno> it = dao.getAll().iterator();
 
 			int cont = 0;
 			
@@ -77,13 +77,19 @@ public class VoluntariosApp {
 			System.out.printf("%5s %5s %18s %10s", "", "Pos |", "Nombre|", "Veces elegido");
 			System.out.println("\n--------------------------------------------");
 			
-			while (it.hasNext()) {
-				
-				Alumno alum = (Alumno) it.next();
+//			while (it.hasNext()) {
+//				
+//				Alumno alum = (Alumno) it.next();
+//				cont++;
+//				System.out.printf("%5s %5s %18s %6d", "", Integer.toString(cont) + "º |", alum.getNombre()+"|", alum.getNumVecesElegido());
+//				System.out.println("");
+//				
+//			}
+			
+			for(Alumno alum : dao.getAll()) {
 				cont++;
 				System.out.printf("%5s %5s %18s %6d", "", Integer.toString(cont) + "º |", alum.getNombre()+"|", alum.getNumVecesElegido());
 				System.out.println("");
-				
 			}
 			
 		}else {

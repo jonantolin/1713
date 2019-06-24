@@ -15,6 +15,7 @@ public class CerdosYDiamantes  {
 	public void test() {
 
 		ArrayList<Ordenable> lista = new ArrayList<Ordenable>();
+		ArrayList<String> lista2 = new ArrayList<String>();
 		Cerdo c = new Cerdo("Pig", 3);
 		Diamante d = new Diamante("Rojo",1);
 		Cerdo c2 = new Cerdo("Rodirgo",30);
@@ -29,6 +30,12 @@ public class CerdosYDiamantes  {
 		lista.add(c3);
 		lista.add(d3);
 		
+		lista2.add("Perro");
+		lista2.add("Zapato");
+		lista2.add("Alambre");
+		lista2.add("Barco");
+		lista2.add("Casa");
+		
 
 		Collections.sort(lista, new ComparadorCerdosDiamantes());
 		
@@ -39,7 +46,16 @@ public class CerdosYDiamantes  {
 		assertEquals(c2, lista.get(4));
 		assertEquals(40, lista.get(5).getValor());
 		
-		assertEquals("El nombre del cerdo es Pig", devolverDato(c));
+		assertEquals("El nombre del cerdo es Pig", devolverDato(lista.get(1)));
+		
+		Collections.sort(lista2);
+		
+		assertEquals("Alambre",lista2.get(0));
+		assertEquals("Barco",lista2.get(1));
+		assertEquals("Casa",lista2.get(2));
+		assertEquals("Perro",lista2.get(3));
+		assertEquals("Zapato",lista2.get(4));
+		
 		
 		
 	}
