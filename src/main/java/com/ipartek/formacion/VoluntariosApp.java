@@ -74,15 +74,14 @@ public class VoluntariosApp {
 			
 			System.out.println("            RANKING DE VOLUNTARIOS PARA LEER ");
 			System.out.println("-----------------------------------------------------");
-			//System.out.println("Pos | Nombre | Veces Elegido");
-			System.out.printf("%5s %5s %12s %10s", "", "Pos |", "Nombre|", "Veces elegido");
-			System.out.println("\n---------------------------------------");
+			System.out.printf("%5s %5s %18s %10s", "", "Pos |", "Nombre|", "Veces elegido");
+			System.out.println("\n--------------------------------------------");
 			
 			while (it.hasNext()) {
 				
 				Alumno alum = (Alumno) it.next();
 				cont++;
-				System.out.printf("%5s %5s %12s %10d", "", Integer.toString(cont) + "º |", alum.getNombre()+"|", alum.getNumVecesElegido());
+				System.out.printf("%5s %5s %18s %6d", "", Integer.toString(cont) + "º |", alum.getNombre()+"|", alum.getNumVecesElegido());
 				System.out.println("");
 				
 			}
