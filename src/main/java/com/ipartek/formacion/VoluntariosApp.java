@@ -82,6 +82,7 @@ public class VoluntariosApp {
 				Alumno alum = (Alumno) it.next();
 				cont++;
 				
+				//TODO tabular perfectamente
 				System.out.println("           "+cont + "º" +" | "+ alum.getNombre()
 										+ " | " + alum.getNumVecesElegido());
 

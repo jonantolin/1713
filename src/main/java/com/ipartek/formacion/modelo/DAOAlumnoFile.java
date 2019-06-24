@@ -23,8 +23,9 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 	private static final long serialVersionUID = 1L;
 	private static DAOAlumnoFile INSTANCE;
 	private ArrayList<Alumno> lista;
-	private static final String DIRECTORIO_CASA = "C:\\\\Users\\\\Jon\\\\eclipse-workspace\\\\1713\\\\";
-	//private static final String DIRECTORIO_IPARTEK =""; TODO establecer directorio usado en ipartek
+	//private static final String DIRECTORIO_CASA = "C:\\Users\\Jon\\eclipse-workspace\\1713";
+	private static final String DIRECTORIO_IPARTEK ="C:\\1713\\eclipse-workspace\\1713";
+	private static final String NOMBRE_ARCHIVO = "\\RankingAlumnos.txt";
 
 	
 	/**
@@ -140,7 +141,7 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 
 		try {
 
-			File almacen = new File(DIRECTORIO_CASA + "RankingAlumnos.txt");
+			File almacen = new File(DIRECTORIO_IPARTEK + NOMBRE_ARCHIVO);
 			FileOutputStream fos = new FileOutputStream(almacen);
 
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -166,7 +167,7 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 		try {
 			
 			FileInputStream lector;
-			lector = new FileInputStream(DIRECTORIO_CASA+ "RankingAlumnos.txt");
+			lector = new FileInputStream(DIRECTORIO_IPARTEK + NOMBRE_ARCHIVO);
 			ObjectInputStream ois = new ObjectInputStream(lector);
 			Object aux = ois.readObject();
 
