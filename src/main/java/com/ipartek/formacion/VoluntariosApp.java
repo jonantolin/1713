@@ -12,7 +12,7 @@ import com.ipartek.formacion.modelo.DAOAlumnoFile;
 /**
  * Aplicación para elegir un alumno aleatorio para que lea,
  * Permite ver un ranking con las veces que ha sido seleccionado cada alumno
- * Permite crear, eliminar, actualizar alumnos (CRUD)
+ * Permite crear, leer, actualizar y eliminar alumnos del ranking (CRUD)
  * Se guarda automaticamente en un fichero de texto el ranking y se inicia con el mismo
  * 
  * @author Jon

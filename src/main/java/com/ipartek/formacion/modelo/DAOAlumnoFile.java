@@ -23,10 +23,10 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 	private static final long serialVersionUID = 1L;
 	private static DAOAlumnoFile INSTANCE;
 	private ArrayList<Alumno> lista;
-	//private static final String DIRECTORIO_CASA = "C:\\Users\\Jon\\eclipse-workspace\\1713";
-	private static final String DIRECTORIO_IPARTEK ="C:\\1713\\eclipse-workspace\\1713";
-	private static final String NOMBRE_ARCHIVO = "\\RankingAlumnos.txt";
-
+	private static final String RUTA_ARCHIVO = "C:\\1713\\eclipse-workspace\\1713\\src\\main\\resources\\";
+	private static final String NOMBRE_ARCHIVO = "RankingAlumnos.txt";
+	
+	//TODO fichero como ruta relativa
 	
 	/**
 	 * Encargado de devolver solo un objeto, patron Singleton La palabra reservada
@@ -140,8 +140,21 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 	public void guardarLista(ArrayList<Alumno> lista) throws IOException {
 
 		try {
-
-			File almacen = new File(DIRECTORIO_IPARTEK + NOMBRE_ARCHIVO);
+			//Se guardara en la carpeta resources del proyecto
+			// Se puede especificar otra ruta añadiendola antes de NOMBRE_ARCHIVO
+			// C:\\1713\\eclipse-workspace\\1713\\src\\main\\resources\\
+			
+			//ClassLoader classLoader = new DAOAlumnoFile().getClass().getClassLoader();
+		
+			File almacen = new File(RUTA_ARCHIVO+ NOMBRE_ARCHIVO); 
+			
+			//TODO mirar forma de guardar en carpeta resources sin especificar ruta
+//			if(!almacen.exists()) {
+//				almacen.createNewFile();
+//			}
+			
+			// getClass().getResource("/textfiles/myfile.txt"  
+			  
 			FileOutputStream fos = new FileOutputStream(almacen);
 
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -167,10 +180,11 @@ public class DAOAlumnoFile implements IPersistible<Alumno>, Serializable {
 		try {
 			
 			FileInputStream lector;
-			lector = new FileInputStream(DIRECTORIO_IPARTEK + NOMBRE_ARCHIVO);
+			lector = new FileInputStream(RUTA_ARCHIVO + NOMBRE_ARCHIVO);
 			ObjectInputStream ois = new ObjectInputStream(lector);
 			Object aux = ois.readObject();
-
+			
+			
 			lista = (ArrayList<Alumno>) aux;
 
 			ois.close();
