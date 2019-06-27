@@ -7,7 +7,7 @@ public class Youtube {
 	private static final int LONGITUD_CODIGO = 11;
 	private static final int LONGITUD_MIN_TITULO = 2;
 	private static final int LONGITUD_MAX_TITULO = 150;
-	private static final String URL = "https://www.youtube.com/watch?v=";
+	private static final String URL = "https://www.youtube.com/embed/";
 	
 	private String titulo;
 	private String codigo;
@@ -53,7 +53,7 @@ public class Youtube {
 	
 	/**
 	 * 
-	 * @param codigo String debe ser de tamaño 11 caracteres
+	 * @param codigo String debe ser de tamaï¿½o 11 caracteres
 	 * @throws Exception si el codigo tiene una longitud distinta a 11 o es null
 	 */
 	public void setCodigo(String codigo) throws Exception {
